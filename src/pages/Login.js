@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { PAGES } from "../shared/constants";
 import service from "../shared/service";
 
