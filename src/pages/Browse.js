@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Service from "../shared/service";
 
 export default function Login({ usePage, useCartProducts }) {
-  const [products] = useState(() => Service.getProducts());
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      setProducts(await Service.getProducts());
+    };
+
+    getProducts();
+  }, []);
 
   return (
     <div>
@@ -16,27 +24,28 @@ export default function Login({ usePage, useCartProducts }) {
       >
         Available Products
       </div>
-      {products.map(({ id, productImg, productName, productSubject }) => {
+      {products.map(({ id, image, name, description }) => {
         return (
           <div
             style={{
               margin: "20px",
               cursor: "pointer",
               display: "flex",
+              border: "1px solid gray",
+              borderRadius: "10px",
+              padding: "10px",
             }}
             onClick={() => {
-              const index = useCartProducts[0].findIndex(
-                ({ id: fId }) => fId === id
-              );
+              const index = useCartProducts[0].findIndex((fId) => fId === id);
               if (index === -1) {
                 useCartProducts[1]([...useCartProducts[0], id]);
               }
             }}
           >
-            <img src={productImg} alt="product_img" width="100" />
+            <img src={image} alt="product_img" width="100" />
             <div style={{ margin: "13px", marginLeft: "25px" }}>
-              <div>{productName}</div>
-              <div>{productSubject}</div>
+              <div>{name}</div>
+              <div>{description}</div>
             </div>
           </div>
         );

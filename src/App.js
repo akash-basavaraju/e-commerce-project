@@ -9,9 +9,8 @@ import { PAGES } from "./shared/constants";
 function App() {
   const usePage = useState(PAGES.LOGIN);
   const useCartProducts = useState([]);
-  const useUserAuth = useState();
+  const useUserAuth = useState(false);
 
-  console.log(usePage[0]);
   const getPageToRender = () => {
     switch (usePage[0]) {
       case PAGES.LOGIN: {
