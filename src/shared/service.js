@@ -1,4 +1,8 @@
 class Service {
+  host = process.env.REACT_APP_HOST || 'localhost';
+  port = process.env.REACT_APP_PORT || 8080;
+  baseUrl = `http://${this.host}:${this.port}`
+
   async getProducts() {
     // return [
     //   {
@@ -16,46 +20,48 @@ class Service {
     //     description: "Product 2's subject line",
     //   },
     // ];
-    return await fetch(
-      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/product`
-    );
+    return await fetch(`${this.baseUrl}/product`);
   }
 
   async saveUser(payload) {
     return await fetch(
-      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user`,
+      `${this.baseUrl}/user`,
       {
         method: "POST",
-        body: payload,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       }
     );
   }
 
   async payOrder(payload) {
     return await fetch(
-      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/payment`,
+      `${this.baseUrl}/payment`,
       {
         method: "POST",
-        body: payload,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       }
     );
   }
 
   async getUsers() {
     return await fetch(
-      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user`
+      `${this.baseUrl}/user`
     );
   }
 
   async login(payload) {
     return await fetch(
-      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user/login`,
+      `${this.baseUrl}/user/login`,
       {
         method: "POST",
-        body: payload,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       }
     );
   }
 }
 
-export default new Service();
+const service = new Service();
+export default service;
