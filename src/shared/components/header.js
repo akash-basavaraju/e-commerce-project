@@ -1,7 +1,7 @@
 import React from "react";
 import { PAGES } from "../constants";
 
-export default function Header({ usePage, useCartProducts }) {
+export default function Header({ usePage, useCartProducts, useUserAuth }) {
   return (
     <div
       style={{
@@ -27,8 +27,9 @@ export default function Header({ usePage, useCartProducts }) {
         <div
           style={{ padding: "7px", cursor: "pointer" }}
           onClick={() => {
-            debugger;
-            usePage[1](PAGES.BROWSE);
+            if (useUserAuth[0]) {
+              usePage[1](PAGES.BROWSE);
+            }
           }}
         >
           Browse Products
@@ -36,7 +37,9 @@ export default function Header({ usePage, useCartProducts }) {
         <div
           style={{ padding: "7px", cursor: "pointer" }}
           onClick={() => {
-            usePage[1](PAGES.ORDER);
+            if (useUserAuth[0]) {
+              usePage[1](PAGES.ORDER);
+            }
           }}
         >
           Cart({useCartProducts[0].length})

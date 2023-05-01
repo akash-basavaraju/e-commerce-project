@@ -18,7 +18,7 @@ export default function Login({ usePage }) {
           password: <input />
         </div>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-          <button>Submit</button>
+          <button>Login</button>
           <button>Register</button>
         </div>
       </div>
