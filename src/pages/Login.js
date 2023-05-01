@@ -5,15 +5,6 @@ import service from "../shared/service";
 export default function Login({ usePage, useUserAuth }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const getUsers = async () => {
-      setUsers(await service.getUsers());
-    };
-
-    getUsers();
-  }, []);
 
   return (
     <div
@@ -44,13 +35,23 @@ export default function Login({ usePage, useUserAuth }) {
         </div>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
           <button
-            onClick={() => {
-              const index = users.findIndex(({ username: fUsername }) => {
-                return username === fUsername;
-              });
-              if (users[index].password === password) {
-                useUserAuth[1](true);
-                usePage[1](PAGES.BROWSE);
+            onClick={async () => {
+              try {
+                const users = await service.getUsers();
+                const index = users.findIndex(({ username: fUsername }) => {
+                  return username === fUsername;
+                });
+                if (index === -1) {
+                  alert("User does not exist");
+                } else if (users[index].password === password) {
+                  useUserAuth[1](true);
+                  usePage[1](PAGES.BROWSE);
+                  alert("Login Successfull");
+                } else {
+                  alert("Wrong password");
+                }
+              } catch (err) {
+                alert("Something went wrong in login!");
               }
               // useUserAuth[1](true);
               // usePage[1](PAGES.BROWSE);
@@ -59,9 +60,9 @@ export default function Login({ usePage, useUserAuth }) {
             Login
           </button>
           <button
-            onClick={() => {
+            onClick={async () => {
               try {
-                service.saveUser({ username, password });
+                await service.saveUser({ username, password });
                 setUsername("");
                 setPassword("");
                 alert("Registerd, Please login!");
