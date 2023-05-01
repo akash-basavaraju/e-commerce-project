@@ -6,4 +6,4 @@ COPY . .
 RUN yarn install --production
 RUN yarn build
 CMD ["node", "server.js"]
-EXPOSE 3000
+EXPOSE 8080
