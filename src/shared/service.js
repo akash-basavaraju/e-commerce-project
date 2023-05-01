@@ -16,25 +16,35 @@ class Service {
     //     description: "Product 2's subject line",
     //   },
     // ];
-    return await fetch("http://127.0.0.1:3000/product");
+    return await fetch(
+      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/product`
+    );
   }
 
   async saveUser(payload) {
-    return await fetch("http://127.0.0.1:3000/user", {
-      method: "POST",
-      body: payload,
-    });
+    return await fetch(
+      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user`,
+      {
+        method: "POST",
+        body: payload,
+      }
+    );
   }
 
   async payOrder(payload) {
-    return await fetch("http://127.0.0.1:3000/payment", {
-      method: "POST",
-      body: payload,
-    });
+    return await fetch(
+      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/payment`,
+      {
+        method: "POST",
+        body: payload,
+      }
+    );
   }
 
   async getUsers() {
-    return await fetch("http://127.0.0.1:3000/user");
+    return await fetch(
+      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user`
+    );
   }
 }
 
