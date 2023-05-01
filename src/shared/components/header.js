@@ -1,7 +1,7 @@
 import React from "react";
 import { PAGES } from "../constants";
 
-export default function Header({ usePage }) {
+export default function Header({ usePage, useCartProducts }) {
   return (
     <div
       style={{
@@ -39,7 +39,7 @@ export default function Header({ usePage }) {
             usePage[1](PAGES.ORDER);
           }}
         >
-          Order
+          Cart({useCartProducts[0].length})
         </div>
       </div>
     </div>
