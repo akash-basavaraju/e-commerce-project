@@ -8,6 +8,8 @@ import { PAGES } from "./shared/constants";
 
 function App() {
   const usePage = useState(PAGES.LOGIN);
+  const useCartProducts = useState([]);
+
   console.log(usePage[0]);
   const getPageToRender = () => {
     switch (usePage[0]) {
@@ -15,10 +17,10 @@ function App() {
         return <Login usePage={usePage} />;
       }
       case PAGES.BROWSE: {
-        return <Browse usePage={usePage} />;
+        return <Browse usePage={usePage} useCartProducts={useCartProducts} />;
       }
       case PAGES.ORDER: {
-        return <Order usePage={usePage} />;
+        return <Order usePage={usePage} useCartProducts={useCartProducts} />;
       }
       default: {
         return <div>No Page Selected</div>;
@@ -28,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header usePage={usePage} />
+      <Header usePage={usePage} useCartProducts={useCartProducts} />
       <div style={{ padding: "10px" }}>{getPageToRender()}</div>
     </div>
   );
