@@ -61,13 +61,17 @@ export default function Login({ usePage, useUserAuth }) {
           </button>
           <button
             onClick={async () => {
-              try {
-                await service.saveUser({ username, password });
-                setUsername("");
-                setPassword("");
-                alert("Registerd, Please login!");
-              } catch (err) {
-                alert("Something went wrong in register!");
+              if (username !== "" && password !== "") {
+                try {
+                  await service.saveUser({ username, password });
+                  setUsername("");
+                  setPassword("");
+                  alert("Registerd, Please login!");
+                } catch (err) {
+                  alert("Something went wrong in register!");
+                }
+              } else {
+                alert("Enter user name and password.");
               }
             }}
           >
