@@ -46,6 +46,16 @@ class Service {
       `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user`
     );
   }
+
+  async login(payload) {
+    return await fetch(
+      `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user/login`,
+      {
+        method: "POST",
+        body: payload,
+      }
+    );
+  }
 }
 
 export default new Service();
