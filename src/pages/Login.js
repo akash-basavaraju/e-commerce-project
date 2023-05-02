@@ -79,6 +79,8 @@ export default function Login({ usePage, useUserAuth }) {
                 // } else {
                 //   alert("Wrong password");
                 // }
+                useUserAuth[1](true);
+                usePage[1](PAGES.BROWSE);
               } catch (err) {
                 alert("Something went wrong in login!");
               }
