@@ -94,7 +94,7 @@ export default function Login({ usePage, useUserAuth }) {
                 email !== ""
               ) {
                 try {
-                  await service.saveUser({ username, password });
+                  await service.saveUser({ username, password, name, email });
                   setUsername("");
                   setPassword("");
                   alert("Registerd, Please login!");
