@@ -26,7 +26,7 @@ class Service {
       `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user`,
       {
         method: "POST",
-        body: payload,
+        body: JSON.stringify(payload),
       }
     );
   }
@@ -36,7 +36,7 @@ class Service {
       `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/payment`,
       {
         method: "POST",
-        body: payload,
+        body: JSON.stringify(payload),
       }
     );
   }
@@ -52,7 +52,7 @@ class Service {
       `${process.env.REACT_APP_HOST}:${process.env.REACT_APP_PORT}/user/login`,
       {
         method: "POST",
-        body: payload,
+        body: JSON.stringify(payload),
       }
     );
   }
