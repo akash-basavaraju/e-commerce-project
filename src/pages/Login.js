@@ -27,6 +27,7 @@ export default function Login({ usePage, useUserAuth }) {
                 onChange={(event) => {
                   setName(event.target.value);
                 }}
+                value={name}
               />
             </div>
             <div style={{ margin: "10px" }}>
@@ -36,6 +37,7 @@ export default function Login({ usePage, useUserAuth }) {
                   setEmail(event.target.value);
                 }}
                 type="email"
+                value={email}
               />
             </div>
           </>
@@ -46,6 +48,7 @@ export default function Login({ usePage, useUserAuth }) {
             onChange={(event) => {
               setUsername(event.target.value);
             }}
+            value={username}
           />
         </div>
         <div style={{ margin: "10px" }}>
@@ -55,6 +58,7 @@ export default function Login({ usePage, useUserAuth }) {
             onChange={(event) => {
               setPassword(event.target.value);
             }}
+            value={password}
           />
         </div>
         <div style={{ display: "flex", justifyContent: "space-evenly" }}>
