@@ -7,7 +7,8 @@ export default function Login({ usePage, useCartProducts }) {
 
   useEffect(() => {
     const getProducts = async () => {
-      setProducts(await Service.getProducts());
+      const data = await Service.getProducts();
+      setProducts(data);
     };
 
     getProducts();
