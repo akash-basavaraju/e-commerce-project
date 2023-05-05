@@ -7,6 +7,7 @@ export default function Login({ usePage, useCartProducts }) {
   useEffect(() => {
     const getProducts = async () => {
       const data = await Service.getProducts();
+      console.log(data)
       setProducts(data);
     };
 
@@ -27,7 +28,7 @@ export default function Login({ usePage, useCartProducts }) {
       </div>
       {products.map(({ id, image, name, description }) => {
         return (
-          <div
+          <div key={{ id }}
             style={{
               margin: "20px",
               cursor: "pointer",
@@ -40,6 +41,7 @@ export default function Login({ usePage, useCartProducts }) {
               const index = useCartProducts[0].findIndex((fId) => fId === id);
               if (index === -1) {
                 useCartProducts[1]([...useCartProducts[0], id]);
+              alert("Product added to Cart!")
               }
             }}
           >

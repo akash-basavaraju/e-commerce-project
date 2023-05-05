@@ -1,4 +1,5 @@
 class Service {
+  userId = 1;
   host = process.env.REACT_APP_HOST || "localhost";
   port = process.env.REACT_APP_PORT || 8080;
   baseUrl = `http://${this.host}:${this.port}`;
@@ -20,7 +21,7 @@ class Service {
     //     description: "Product 2's subject line",
     //   },
     // ];
-    return await fetch(`${this.baseUrl}/product`);
+    return await fetch(`${this.baseUrl}/product`).then(resp => resp.json());
   }
 
   async saveUser(payload) {

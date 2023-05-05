@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Service from "../shared/service";
+import { PAGES } from "../shared/constants";
 
 export default function Login({ usePage, useCartProducts }) {
   const [products, setProducts] = useState([]);
@@ -64,7 +65,14 @@ export default function Login({ usePage, useCartProducts }) {
         >
           Clear Cart
         </button>
-        <button>Pay & Order</button>
+        <button onClick={async () => {
+          let respose = await Service.payOrder({ userId: 1, orders: [{ productId: 2, quantity: 3 }] });
+          useCartProducts[1]([]);
+          alert("Order Placed Successfully!");
+          usePage[1](PAGES.BROWSE);
+        }}>
+          Pay & Order
+        </button>
       </div>
     </div>
   );

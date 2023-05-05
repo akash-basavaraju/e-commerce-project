@@ -66,7 +66,7 @@ export default function Login({ usePage, useUserAuth }) {
             onClick={async () => {
               setRegister(false);
               try {
-                await service.login({ username, password });
+                let user = await service.login({ username, password });
                 // const index = users.findIndex(({ username: fUsername }) => {
                 //   return username === fUsername;
                 // });
@@ -79,6 +79,7 @@ export default function Login({ usePage, useUserAuth }) {
                 // } else {
                 //   alert("Wrong password");
                 // }
+                service.userId = user.id;
                 useUserAuth[1](true);
                 usePage[1](PAGES.BROWSE);
               } catch (err) {
